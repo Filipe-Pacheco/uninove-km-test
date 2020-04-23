@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/style.css"/>
+
+    <!-- chart.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <title> Hello, world! </title>
+  </head>
+
+
+
+
+  <body>
+    <div class="container-fluid">
+      <div class="row navbar navbar-expand-lg navbar-light bg-light">
+        
+        <!-- Image and text -->
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+              <img src="/logoi9.png" width="30" height="30" class="d-inline-block align-top logo-image-nav" alt="">
+              Labs Lauchbase
+            </a>
+          </nav>
+        
+        <div class="col">
+
+          <ul class="nav justify-content-end">
+            
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Photos & Videos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Input File</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Social Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Researches</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/graph.htm">Graphs</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+        
+      <div class="row content justify-content-md-center">
+        <div class="col-2">
+          <div class="list-group" id="nav-lateral-list">
+            <a href="video_test.htm" class="list-group-item list-group-item-action" id="nav-lateral-list-item" >Sala - Teste 1</a>
+
+            <a href="#" class="list-group-item list-group-item-action">Sala - Teste 2</a>
+            <a href="#" class="list-group-item list-group-item-action">Sala - Teste 3</a>
+          </div>
+          
+          
+        </div>
+        
+        <div class="col-7 warpper-content">
+          <!-- <iframe src="/events.htm" width=100% height=100% frameborder=0px></iframe>-->
+          
+          <!-- Chart.js-->
+          <canvas id="chart" width="400" height="400"></canvas>
+
+          <script>
+            let graphType = 'bar';
+
+            function chooseGraph (type) {
+              graphType = type;
+              console.log(graphType);
+            };
+
+           
+
+            // Pega o elemento pelo ID
+            var ctx = document.getElementById('chart').getContext('2d');
+
+            //Cria um novo gráfico
+            var myChart = new Chart(ctx, {
+                type: graphType, // Tipo de gráfico
+                data: {
+                    //Legenda de cada barra do eixo X
+                    labels: ['Vergueiro', 'Mauá', 'SBC', 'Osasco', 'Bauru', 'Guarulhos'],
+                    
+                    //Dados do gráfico
+                    datasets: [{
+                        //Título
+                        label: 'Aqui vem o título do seu gráfico',
+
+                        //Dados do eixo Y
+                        data: [12, 12, 15, 12, 10, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+            });
+            </script>
+
+
+            <input type="radio" id="line-option" name="line" value="Line" onClick="chooseGraph('line')">
+            <label for="line">Line</label>
+
+            <input type="radio" id="bar-option" value="" onClick="chooseGraph('bar')">
+            <label>Bar</label>
+
+            <input type="radio" value="">
+            <label>Radar</label>
+
+            <input type="radio" value="">
+            <label>Doughnut and pie</label>
+
+            <input type="radio" value="">
+            <label>Polar area</label>
+
+            <input type="radio" value="">
+            <label>Bubble</label>
+
+            <input type="radio" value="">
+            <label>Scatter</label>
+
+
+          <!-- EndChart.Js-->
+
+
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+      <template>
+        <div class="col-3">
+
+          <ul class="list-unstyled">
+            <li class="media">
+              <img src="https://randomuser.me/api/portraits/women/91.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Joana De la Belle</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+            <li class="media my-4">
+              <img src="https://randomuser.me/api/portraits/women/31.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Mary Mckdnals</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+            <li class="media">
+              <img src="https://randomuser.me/api/portraits/women/79.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Elizabeth Toamar</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+          </ul>        
+          
+        </div>
+      </template>
+      </div>
+  
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </body>
+</html>

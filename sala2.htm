@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/style.css"/>
+
+    <!-- chart.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <title> Hello, world! </title>
+  </head>
+
+
+
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <a class="navbar-brand" href="#">
+          <img src="/logoi9.png" width="30" height="30" class="d-inline-block align-top logo-image-nav" alt="">
+          Labs Lauchbase
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="nav col justify-content-end">
+  
+          <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Photos & Videos</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Input File</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Social Media</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Researches</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/graph.htm">Graphs</a>
+          </li>
+          </ul>
+
+      </div>
+
+    </nav>
+
+
+
+    <div class="container-fluid">
+      <div class="row content justify-content-md-center" id="app">
+
+        <div class="col-10 col-lg-2 ">
+          <div class="list-group" id="nav-lateral-list">
+            <a href="/index.htm" class="list-group-item list-group-item-action">Hall do Evento</a>
+            <a href="/sala1.htm" class="list-group-item list-group-item-action">Sala - Teste 1</a>
+            <a href="/sala2.htm" class="list-group-item list-group-item-action">Sala - Teste 2</a>
+            <a href="/sala3.htm" class="list-group-item list-group-item-action">Sala - Teste 3</a>
+            <a href="/palestrantes.htm" class="list-group-item list-group-item-action">Palestrantes</a>
+            <a href="/expositores.htm" class="list-group-item list-group-item-action">Expositores</a>
+          </div> 
+        <!--
+          <script>
+           var list = document.querySelector('#nav-lateral-list');
+            var listItem = document.querySelector('#nav-lateral-list-item');
+            var item2 = criaItem.createTextNode('Filipe');
+
+            function renderItens() {
+              for (local of todos) {
+                var criaItem = document.createElement('a');
+                var criaTexto = document.createTextNode(local);
+
+                criaItem = document.appendChild(criaTexto);
+                list.appendChild(criaItem);
+              }
+            }
+
+            renderItens() 
+
+            console.log(list);
+
+          </script>
+        -->
+        </div>
+        
+
+
+        <div class="col-lg-10 col-md-10 warpper-content"><!-- MAIN CONTENT-->
+
+
+          <div class="row justify-content-center video-stage">
+            <iframe width="100%" height="560" src="https://www.youtube.com/embed/3rLV5hMz-Cc?controls=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div>VIMEO:</div>
+          <div class="row justify-content-center video-stage">
+            <iframe src="https://player.vimeo.com/video/410782464?autoplay=1&title=0&byline=0&portrait=0" width="996" height="560" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          </div>
+          
+
+
+
+        </div><!-- END MAIN CONTENT-->
+        
+        
+        
+        
+        
+        
+        
+      <!--
+      <template>
+        <div class="col-3">
+
+          <ul class="list-unstyled">
+            <li class="media">
+              <img src="https://randomuser.me/api/portraits/women/91.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Joana De la Belle</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+            <li class="media my-4">
+              <img src="https://randomuser.me/api/portraits/women/31.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Mary Mckdnals</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+            <li class="media">
+              <img src="https://randomuser.me/api/portraits/women/79.jpg" class="mr-3 rounded-circle photo-profile" alt="...">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">Elizabeth Toamar</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </li>
+          </ul>        
+          
+        </div>
+      </template>
+      -->
+
+
+      </div>
+  
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </body>
+</html>
