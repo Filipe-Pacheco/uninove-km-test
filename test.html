@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Analitics</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- The core Firebase JS SDK is always required and must be listed first
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script> -->
+    <!-- mark.js - A keyword highlighter for search terms or regular expressions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+  <body>
+    <!-- Modal -->
+    <div class="modal" id="modalCarregando" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status"></div>
+                    </br>
+                        <strong>Aguarde, solicitando registros bibliográficos... <p id="contador_api_resposta">0</p></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid main-wrap">      
+        <div class="row">
+            <h4>Livros Minha Biblioteca </h4>
+        </div>
+        <hr>
+        <div class="row" style="height: 90%">
+            <!-- Lista de Classes -->
+            <div class="col-2" style="height: -webkit-fill-available; overflow: overlay;">
+                <div id="lista_classes_sidebar" class="list-group">
+                </div>
+            </div>
+
+            <!-- Lista de Livros -->
+            <div class="col-3" style="height: -webkit-fill-available; overflow: overlay;">
+                <div id="lista_livros_sidebar" class="list-group">
+                </div>
+            </div>
+
+            <!-- Capa e navegação -->
+            <div class="col-3">
+                <div class="row">
+                    <figure class="figure" style="text-align: center;">
+                        <img id="capa_livro" src="" class="figure-img img-fluid rounded" style="width: 50%;">
+                        <figcaption class="figure-caption" id="mmsid_livro">mms_id: 990000006190107000</figcaption>
+                    </figure>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-6" style="text-align: center">
+                        <button id="btn_anterior_livro" type="button" class="btn btn-primary">Anterior</button>
+                    </div>
+                    <div class="col-6" style="text-align: center">
+                        <button id="btn_proximo_livro" type="button" class="btn btn-primary">Próximo</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-center">
+                    <div id="pills-section" style="display: inline; width: inherit;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título + descrição -->
+            <div class="col-4">
+                <h2 id="titulo_livro">Titulo livro</h2>
+                <hr>
+                <p id="descricao_livro">Descrição do livro</p>
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        img {
+            width: 50px;
+            height: 350px !important;
+        }
+        .main-wrap{
+            height: 95vh;
+        }
+        .col{
+            border: grey solid 1px
+        }
+        mark{
+            background: orange;
+            color: black;
+        }
+    </style>
+    <!-- Optional JavaScript -->
+    <script>
+        // console.log("API de Cadastro do Firebase conectada com sucesso!")
+        // // Your web app's Firebase configuration
+        // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyBlNxp6bV-Ypr6o1BZC_V0J326iwAJDqUw",
+        //     authDomain: "biblioteca-vue-24518.firebaseapp.com",
+        //     projectId: "biblioteca-vue-24518",
+        //     storageBucket: "biblioteca-vue-24518.appspot.com",
+        //     messagingSenderId: "59882409262",
+        //     appId: "1:59882409262:web:526c27c1a36d0d2a0cbebf",
+        //     measurementId: "G-ZQXVGNCBTZ"
+        // };
+
+        // //Initialize Firebase
+        // firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+
+        // // Abreviações de refeência
+        // let db = firebase.firestore();
+        // var docRef = firebase.firestore().collection("/cities");
+
+    </script>
+    <script src="classes.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script>
+        let dataRaw = [];
+        let dataPorCurso = {};
+        let livros_por_mms_id = {};
+        // Modal Bootstrap Carregando
+        const ModalCarregando = new bootstrap.Modal(document.getElementById('modalCarregando'));
+        
+        // Botões de navegação
+        $('#btn_proximo_livro').click(function(){
+            nextIndex()
+        });
+
+        $('#btn_anterior_livro').click(function(){
+            previousIndex()
+        });
+        
+        // Pegando todos os elementos da lista de LIVROS e adicionando um evento click
+        document.getElementById("lista_livros_sidebar").addEventListener("click", function(e) {
+            // e.target é o elemento alvo + um evento.
+            // Em html o a referencia para os elementos links é "A"
+            if(e.target && e.target.nodeName == "A") {
+                // console.log(e, e.target,e.target.id)
+                console.log(e.target.id + " Foi clicado");
+                // Parse o id para numero
+                let id_selected = e.target.id
+                // pega somente os ultimos numeros
+                id_selected = parseInt(id_selected.slice(5,))
+                vaiParaLivro(id_selected)
+            }
+        });
+
+        // Pegando todos os elementos da lista de CURSOS e adicionando um evento click
+        document.getElementById("lista_classes_sidebar").addEventListener("click", function(e) {
+            // e.target é o elemento alvo + um evento.
+            // Em html o a referencia para os elementos links é "A"
+            if(e.target && e.target.nodeName == "A") {
+                // console.log(e, e.target,e.target.id)
+                console.log(e.target.id + " Foi clicado");
+                // Parse o id para numero
+                let id_selected = e.target.id
+                // pega somente os ultimos numeros
+                id_selected = id_selected.slice(6,)
+                // Muda o curso em stage
+                curso_stage = id_selected;
+                console.log('curso_stage: ',id_selected)
+                // Pega o array do objeto dataPorCurso e passa para ser renderizado pela função renderizaListaLivros
+                let curso_atual = dataPorCurso[id_selected]
+                renderizaListaLivros(curso_atual)
+                atualizaListaCursos()
+            }
+        });
+
+
+        // Variaveis on Stage
+        let livro_stage = 0;
+        let curso_stage;
+        
+        // function nextIndex(){
+        //     livro_stage++
+        //     console.log('livro_stage:',livro_stage)
+        //     renderizaLivro(livro_stage)
+        //     atualizaListaLivros()
+        // }
+
+        // function previousIndex(){
+        //     livro_stage--
+        //     console.log('livro_stage:',livro_stage)
+        //     renderizaLivro(livro_stage)
+        //     atualizaListaLivros()
+        // }
+
+        function vaiParaLivro(val){
+            livro_stage = val
+            console.log('livro_stage:',livro_stage)
+            renderizaLivro(livro_stage)
+            atualizaListaLivros(val)
+        }
+
+        // Esta função recebe um array de livros, percorre todos os livros e dentro de cada livro, percorre todas as tags de curso.
+        // Dentro de cada tag, ele dá um push para um objeto chamado DataPorCurso, que separa os livros por curso.
+        function separaPorCurso(array_de_livros){
+            for (let i in array_de_livros){
+                let livroAtual = array_de_livros[i];
+                let cursos_do_livro = livroAtual.Tag_Descricao;
+
+                for (let i in cursos_do_livro){
+                    let curso_atual = cursos_do_livro[i]
+                    if (dataPorCurso[curso_atual]){
+                        dataPorCurso[curso_atual].push(livroAtual)
+                    } else {
+                        dataPorCurso[curso_atual] = []
+                        dataPorCurso[curso_atual].push(livroAtual)
+                    }
+                }
+            }
+        }
+
+        function separa_por_mms_id(array_de_livros){
+            for (let i in array_de_livros){
+                let livroAtual = array_de_livros[i];
+                let mms_id_livro = livroAtual.mms_id;
+
+                livros_por_mms_id[mms_id_livro] = livroAtual
+            }
+        }
+
+        function renderPills(array_tags){
+            $('#pills-section').empty();
+            for (var i in array_tags) {
+                $('#pills-section').append(
+                    '<span class="badge rounded-pill bg-warning text-dark mx-1">'
+                    + 
+                    array_tags[i] 
+                    +
+                    '</span>'
+                )
+            }
+        }
+
+        // Renderiza Livro atual
+        function renderizaLivro(mms_id){
+            let livro_atual = livros_por_mms_id[mms_id]
+            // console.log(livro_atual)
+            // Elementos:
+            let titulo_elem = document.getElementById('titulo_livro');
+            let descricao_elem = document.getElementById('descricao_livro');
+            let capa_elem = document.getElementById('capa_livro');
+            let mmsid_elem = document.getElementById('mmsid_livro');
+            let tags_elem = document.getElementById('tags_livro');
+            
+            // Renderizando o livro
+            titulo_elem.textContent = livro_atual.title
+            descricao_elem.textContent = livro_atual.Descricao
+            capa_elem.src = livro_atual.Link_capa
+            mmsid_elem.textContent = livro_atual.mms_id
+            renderPills(livro_atual.Tag_Descricao)
+
+            // Aqui vem a parte onde grifamos as Tas na descrição. Para isso devemos passar as palavras que devem ser grifadas 
+            // na função grifaKeywords(id_elemento_texto_alvo, array_keywords)
+            grifaKeywords('descricao_livro', livro_atual.keywordsCurso)
+        }
+        
+        function renderizaListaLivros(array_livros){
+            $('#lista_livros_sidebar').empty();
+            // console.log(array_livros)
+            // Renderiza a Lista
+            for (var i in array_livros){
+                // console.log(array_livros[i].mms_id)
+                $('#lista_livros_sidebar').append('<a id="livro'+ array_livros[i].mms_id +'" href="#" class="list-group-item list-group-item-action listaDeLivros">'
+                +
+                array_livros[i].title
+                +
+                '</a>')
+            }  
+        }
+
+        function renderizaListaClasses(){
+            // Renderiza a Lista
+            for (var i in Object.keys(dataPorCurso)){
+                let cursoAtual = Object.keys(dataPorCurso)[i];
+                let quantResultadoCurso = dataPorCurso[Object.keys(dataPorCurso)[i]].length
+                $('#lista_classes_sidebar').append('<a id="curso-'+ cursoAtual +'" href="#" class="list-group-item list-group-item-action listaDeCursos">'
+                + 
+                cursoAtual
+                +
+                ' <span class="badge bg-primary rounded-pill">'
+                +
+                quantResultadoCurso
+                +
+                '</span></a>')
+            }
+            curso_stage = Object.keys(dataPorCurso)[0]
+        }
+        
+        function atualizaListaLivros(livro){
+            let active_elem = document.getElementsByClassName('list-group-item list-group-item-action active listaDeLivros')[0];
+            if(livro){
+                console.log(livro_stage)
+                if (active_elem){
+                    // Apaga todos os elementos que estão com o active ligado
+                    active_elem.className = 'list-group-item list-group-item-action listaDeLivros'
+                }
+                
+                // Procura o elemento do index e atribui a classe de active
+                let  new_active_elem = document.getElementById('livro'+livro_stage)
+                new_active_elem.className = 'list-group-item list-group-item-action active listaDeLivros'
+            } else {
+                // Se nenhum livro foi selecionado no paãmetro, o primeiro livro da lista de livros vira active
+                document.getElementsByClassName('list-group-item list-group-item-action listaDeLivros')[0].className = 'list-group-item list-group-item-action active listaDeLivros';
+            }
+            
+        }
+
+        function atualizaListaCursos(){
+            let active_elem = document.getElementsByClassName('list-group-item list-group-item-action active listaDeCursos')[0];
+            if(active_elem){
+                // Apaga todos os elementos que estão com o active ligado
+                active_elem.className = 'list-group-item list-group-item-action listaDeCursos'
+
+                // Procura o elemento do index e atribui a classe de active
+                let new_active_elem = document.getElementById('curso-'+curso_stage)
+                new_active_elem.className = 'list-group-item list-group-item-action active listaDeCursos'
+            } else {
+                // primeiro do array resultante vira active
+                document.getElementsByClassName('list-group-item list-group-item-action listaDeCursos')[0].className = 'list-group-item list-group-item-action active listaDeCursos';
+            }
+            
+        }
+
+        ModalCarregando.show()
+        // Deixamos a requisição por último para fazer apenas 1 vez
+        $.ajax({
+        type: "GET",
+        url: "../JSON-minha_biblioteca.json",
+        dataType: "json",
+        success: function(response) {
+                dataRaw = response
+
+                // Restrinjo o número de resultados para trabalhar
+                dataRaw = dataRaw.slice(0, 5000)
+
+                // Classifico todos os resultados, devonvendo uma tag de classificação dentro de cada objeto
+                for (var i in dataRaw){
+                    verificaClasse(dataRaw[i])
+                }
+
+                // Separa os livros de cada curso e armazena dentro de um objeto, onde o nome do curso é a Key de acesso..
+                separaPorCurso(dataRaw)
+                
+                // Separa os livros por MMS_ID. A lista é um objetos onde o próprio mms_id do livro é a Key de acesso.
+                separa_por_mms_id(dataRaw)
+
+                // Renderiza a lista de cursos
+                renderizaListaClasses()
+
+                // Renderiza os livros para o primeiro curso
+                renderizaListaLivros(dataRaw)
+
+                // Renderiza o primeiro livro no stage
+                let primeiro_livro = Object.values(dataPorCurso)[0][0].mms_id
+                renderizaLivro(primeiro_livro)
+
+                // Encontra o primeiro elemento da lista de livros e adiciona a classe active
+                atualizaListaCursos()
+                ModalCarregando.hide();
+            }
+        });
+
+        
+               
+
+    
+    </script>
+</body>
+</html>
